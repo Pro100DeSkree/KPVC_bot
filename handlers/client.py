@@ -254,15 +254,20 @@ async def call_back_data(call: types.CallbackQuery):
         await subscription_keyboard.edit_keyboard(call.message.chat.id, call.message.message_id, data)
     # Якщо натиснуто кнопку з курсом
     elif data in group_selection.select_course_callback_list:
-        match data:
-            case "first_course":
-                await call.answer("Ще не реалізовано. Працює поки що тільки 3 курс")
-            case "second_course":
-                await call.answer("Ще не реалізовано. Працює поки що тільки 3 курс")
-            case "third_course":
-                await group_selection.edit_keyboard(call.message.chat.id, call.message.message_id, data)
-            case "fourth_course":
-                await call.answer("Ще не реалізовано. Працює поки що тільки 3 курс")
+        if data == "third_course":
+            await group_selection.edit_keyboard(call.message.chat.id, call.message.message_id, data)
+        else:
+            await call.answer("Ще не реалізовано. Працює поки що тільки 3 курс")
+
+        # match data:
+        #     case "first_course":
+        #         await call.answer("Ще не реалізовано. Працює поки що тільки 3 курс")
+        #     case "second_course":
+        #         await call.answer("Ще не реалізовано. Працює поки що тільки 3 курс")
+        #     case "third_course":
+        #         await group_selection.edit_keyboard(call.message.chat.id, call.message.message_id, data)
+        #     case "fourth_course":
+        #         await call.answer("Ще не реалізовано. Працює поки що тільки 3 курс")
         # End match-case
     # Якщо натиснуто кнопку з номером групи:
     elif data in await working_with_db.read_groups():

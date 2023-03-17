@@ -14,17 +14,22 @@ SELECT_COURSE_IKB = InlineKeyboardMarkup(row_width=2) \
 
 async def get_keyboard(btn_clicked):     # TODO: Треба отримати всі номери груп та додати їх кнопки
     select_group_ikb = InlineKeyboardMarkup(row_width=4)
-    match btn_clicked:
-        case "first_course":
-            pass
-        case "second_course":
-            pass
-        case "third_course":
-            list_groups = await working_with_db.read_groups_by_course(3)
-            for group in list_groups:
-                select_group_ikb.insert(InlineKeyboardButton(text=group[0], callback_data=group[0]))
-        case "fourth_course":
-            pass
+    if btn_clicked == "third_course":
+        list_groups = await working_with_db.read_groups_by_course(3)
+        for group in list_groups:
+            select_group_ikb.insert(InlineKeyboardButton(text=group[0], callback_data=group[0]))
+
+    # match btn_clicked:
+    #     case "first_course":
+    #         pass
+    #     case "second_course":
+    #         pass
+    #     case "third_course":
+    #         list_groups = await working_with_db.read_groups_by_course(3)
+    #         for group in list_groups:
+    #             select_group_ikb.insert(InlineKeyboardButton(text=group[0], callback_data=group[0]))
+    #     case "fourth_course":
+    #         pass
     # End match-case
     return select_group_ikb
 # End def
