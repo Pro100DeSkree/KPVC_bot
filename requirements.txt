@@ -6,4 +6,4 @@ bs4~=0.0.1
 beautifulsoup4~=4.11.1
 asyncio~=3.4.3
 emoji~=2.2.0
-PyICU
+PyICU~=2.10.2
